@@ -1,82 +1,59 @@
-.navbar-brand img {
-  height: 60px;
-  width: auto;
-  object-fit: contain;
+.site-header {
+  background-color: var(--coffee-900);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .nav-link {
-  color: var(--coffee-900) !important;
-  font-weight: 400;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem !important;
-  transition: color 0.3s ease;
+  color: var(--cream) !important;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem !important;
+  transition: all 0.3s ease;
+  opacity: 0.8;
 }
 
 .nav-link:hover {
-  color: var(--terracotta) !important;
+  opacity: 1;
+  color: var(--cream) !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
 }
 
-@media (max-width: 767px) {
-  .navbar-collapse {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;  /* ← en lugar de right: 0 */
-    bottom: 0;
-    background: var(--cream);
-    z-index: 1040;
-    padding: 2rem;
-    overflow-y: auto;
-    overflow-x: hidden; /* ← añade esto */
-  }
-
-  .navbar-collapse.show,
-  .navbar-collapse.collapsing {
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    height: 100vh !important;
-    transform: translateX(0);
-  }
-
-  .navbar-nav {
-    width: 100%;
-    text-align: center;
-    gap: 1rem !important;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
-
-  .nav-link {
-    font-size: 1.5rem !important;
-    padding: 1rem !important;
-    display: block;
-    border-bottom: 1px solid rgba(10, 5, 5, 0.05);
-  }
-
-  .nav-link:last-child {
-    border-bottom: none;
-  }
-
-  .navbar-toggler {
-    position: relative;
-    z-index: 1050;
-  }
-
-  .navbar-brand {
-    position: relative;
-    z-index: 1050;
-  }
+.nav-link.active {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50px;
+  color: var(--cream) !important;
 }
 
-.navbar-collapse.collapsing {
-  transition: none;
+
+.navbar-brand img {
+  filter: brightness(0) invert(1);
+  height: 50px;
+  transition: transform 0.3s ease;
 }
 
-.navbar-toggler:focus {
-  box-shadow: none;
+.navbar-brand img:hover {
+  transform: scale(1.05);
+}
+
+.btn-outline-dark {
+  color: var(--cream) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+  background: var(--cream) !important;
+  color: var(--coffee-900) !important;
+  border-color: var(--cream) !important;
+}
+
+.navbar-toggler {
+  filter: brightness(0) invert(1);
 }

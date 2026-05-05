@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {HeroComponent} from '../../layout/hero/hero.component';
-import {ProductCardComponent} from '../../layout/product-card/product-card.component';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'; // 1. Importamos el Router
+import { ProductCardComponent } from '../../layout/product-card/product-card.component';
+import { CartService } from '../../servicios/cart.service';
 
 interface Product {
   id: number;
@@ -18,52 +20,56 @@ interface Product {
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [CommonModule, FormsModule, HeroComponent, ProductCardComponent],
+  imports: [CommonModule, FormsModule, ProductCardComponent],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent implements OnInit {
+  private http = inject(HttpClient);
+  private cdr = inject(ChangeDetectorRef);
+  private cartService = inject(CartService);
+  private router = inject(Router); // 2. Inyectamos el Router
 
-  // --- Datos ---
-  protected origins = ['Etiopía', 'Colombia', 'Brasil', 'Kenya'];
-  protected processes = ['Lavado', 'Natural', 'Honey'];
-  protected noteMap: Record<string, string[]> = {
-    'Etiopía':  ['Frutos Rojos y Cítricos', 'Floral y Bergamota', 'Bayas y Chocolate'],
-    'Colombia': ['Caramelo y Nueces', 'Naranja y Miel', 'Chocolate y Ciruela'],
-    'Brasil':   ['Chocolate y Avellana', 'Nuez y Especias', 'Caramel y Azúcar'],
-    'Kenya':    ['Limón y Grosella', 'Frambuesa y Menta', 'Tropical y Cítrico']
-  };
-  protected badgeTypes = ['Orgánico', 'Premium', 'Comercio Justo'];
-
-  // --- Estado ---
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  currentYear = new Date().getFullYear();
 
-  // --- Filtros ---
   searchTerm = '';
   selectedOrigins: string[] = [];
   selectedBadges: string[] = [];
   sortValue = '';
 
-  ngOnInit() {
-    this.products = Array.from({ length: 7 }, (_, i) => {
-      const origin = this.origins[i % this.origins.length];
-      return {
-        id: i + 1,
-        name: `Café ${origin} Lote #${i + 1}`,
-        origin,
-        process: this.processes[i % this.processes.length],
-        note: this.noteMap[origin][i % 3],
-        badge: this.badgeTypes[i % this.badgeTypes.length],
-        price: parseFloat((12 + ((i * 1.37) % 15)).toFixed(2)),
-        img: 'img/productosFoto.png'
-      };
-    });
+  origins = ['Etiopía', 'Colombia', 'Brasil', 'Kenya'];
+  badgeTypes = ['Orgánico', 'Premium', 'Comercio Justo'];
 
-    this.filteredProducts = [...this.products];
+  ngOnInit() {
+    this.cargarProductos();
   }
 
+  cargarProductos() {
+    this.http.get<Product[]>('/assets/data/productos.json').subscribe({
+      next: (data) => {
+        this.products = [...data];
+        this.filteredProducts = [...data];
+        this.cdr.detectChanges();
+      },
+      error: (err) => console.error('Error al cargar productos:', err)
+    });
+  }
+
+  // Lógica del Carrito con Redirección
+  agregarAlCarrito(producto: Product) {
+    // 1. Agregamos al servicio (se guarda en la lista)
+    this.cartService.agregar(producto);
+
+    // 2. Avisamos por consola (para debug)
+    console.log('Añadido al acumulado:', producto.name);
+
+    // 3. Redirigimos al componente donde se ve la lista acumulada
+    // Esto es lo que querías: que te lleve a la página donde se ven todos los guardados
+    this.router.navigate(['/checkout']);
+  }
+
+  // --- Lógica de Filtros ---
   toggleFilter(list: string[], value: string) {
     const idx = list.indexOf(value);
     idx === -1 ? list.push(value) : list.splice(idx, 1);
@@ -75,7 +81,6 @@ export class CatalogoComponent implements OnInit {
 
   applyFilters() {
     const term = this.searchTerm.toLowerCase();
-
     let filtered = this.products.filter(p => {
       const matchSearch = !term || p.name.toLowerCase().includes(term) || p.note.toLowerCase().includes(term);
       const matchOrigin = !this.selectedOrigins.length || this.selectedOrigins.includes(p.origin);
@@ -86,6 +91,7 @@ export class CatalogoComponent implements OnInit {
     if (this.sortValue === 'price-asc')  filtered.sort((a, b) => a.price - b.price);
     if (this.sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
 
-    this.filteredProducts = filtered;
+    this.filteredProducts = [...filtered];
+    this.cdr.detectChanges();
   }
 }

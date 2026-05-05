@@ -1,11 +1,11 @@
-import {Component, Input} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
-  imports: [
-    RouterLink
-  ],
+  standalone: true,
+  imports: [RouterLink, CommonModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
@@ -16,4 +16,5 @@ export class ProductCardComponent {
   @Input() precio: string = '';
   @Input() textoBoton: string = '';
   @Input() urlBoton: string = '';
+  @Input() imgUrl: string = 'img/productosFoto.png';
 }

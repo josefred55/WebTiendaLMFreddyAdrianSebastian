@@ -1,12 +1,3 @@
-<app-hero
-  titulo="Nuestra colección"
-  subtitulo="30 variedades seleccionadas con cuidado, cada una con su historia y su sabor único."
-  imgUrl="img/catalogoHero.jpg"
-  textoBoton="Conocer Más"
-  botonUrl="/catalogo"
->
-</app-hero>
-
 <!-- TRUST BAR -->
 <div class="bg-light py-4">
   <div class="container">
@@ -184,30 +175,31 @@
               [titulo]="p.name"
               [descripcion]="p.note"
               [precio]="p.price + ' €'"
+              [imgUrl]="p.img"
               textoBoton="Añadir al carrito"
               urlBoton="/catalogo"
             >
               @if (p.badge === 'Premium') {
                 <span class="badge-premium">
-            <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span class="text-light fw-semibold">Premium</span>
-          </span>
+                  <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-light fw-semibold">Premium</span>
+                </span>
               } @else if (p.badge === 'Comercio Justo') {
                 <span class="badge-justo">
-            <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span class="text-light fw-semibold">Comercio Justo</span>
-          </span>
+                  <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-light fw-semibold">Comercio Justo</span>
+                </span>
               } @else {
                 <span class="badge-organico">
-            <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span class="text-light fw-semibold">Orgánico</span>
-          </span>
+                  <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-light fw-semibold">Orgánico</span>
+                </span>
               }
             </app-product-card>
           </div>
