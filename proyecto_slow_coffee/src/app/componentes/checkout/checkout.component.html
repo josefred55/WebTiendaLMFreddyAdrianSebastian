@@ -1,0 +1,309 @@
+<!-- checkout.component.html -->
+<div class="container py-5 my-5">
+  <h2 class="text-center mb-5" style="color: #6B4423;">Finalizar Compra</h2>
+
+  <!-- Paso 1: Envío -->
+  <div *ngIf="step === 1" class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-lg rounded-4 mb-4">
+        <div class="card-header p-4" style="background-color: #8B6239; color: white;">
+          <h5 class="mb-0">Información de Envío</h5>
+        </div>
+        <div class="card-body p-5">
+          <form (ngSubmit)="onSubmitEnvio()">
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="nombre" class="form-label fw-bold">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="nombre"
+                  [(ngModel)]="nombre"
+                  name="nombre"
+                  placeholder="Juan"
+                  required
+                >
+              </div>
+              <div class="col-md-6">
+                <label for="apellido" class="form-label fw-bold">Apellido</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="apellido"
+                  [(ngModel)]="apellido"
+                  name="apellido"
+                  placeholder="Pérez"
+                  required
+                >
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input
+                  type="email"
+                  class="form-control form-control-lg"
+                  id="email"
+                  [(ngModel)]="email"
+                  name="email"
+                  placeholder="juan@example.com"
+                  required
+                >
+              </div>
+              <div class="col-md-6">
+                <label for="telefono" class="form-label fw-bold">Teléfono</label>
+                <input
+                  type="tel"
+                  class="form-control form-control-lg"
+                  id="telefono"
+                  [(ngModel)]="telefono"
+                  name="telefono"
+                  placeholder="+34 600 000 000"
+                >
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="direccion" class="form-label fw-bold">Dirección</label>
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                id="direccion"
+                [(ngModel)]="direccion"
+                name="direccion"
+                placeholder="Calle Principal, 123"
+                required
+              >
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="ciudad" class="form-label fw-bold">Ciudad</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="ciudad"
+                  [(ngModel)]="ciudad"
+                  name="ciudad"
+                  placeholder="Madrid"
+                  required
+                >
+              </div>
+              <div class="col-md-3">
+                <label for="codigoPostal" class="form-label fw-bold">C.P.</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="codigoPostal"
+                  [(ngModel)]="codigoPostal"
+                  name="codigoPostal"
+                  placeholder="28001"
+                  required
+                >
+              </div>
+              <div class="col-md-3">
+                <label for="pais" class="form-label fw-bold">País</label>
+                <select class="form-control form-control-lg" id="pais" [(ngModel)]="pais" name="pais" required>
+                  <option value="">Selecciona</option>
+                  <option value="ES">España</option>
+                  <option value="FR">Francia</option>
+                  <option value="IT">Italia</option>
+                </select>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-lg w-100 text-white fw-bold"
+              style="background-color: #8B6239;"
+            >
+              Continuar al Pago →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paso 2: Pago -->
+  <div *ngIf="step === 2" class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-lg rounded-4 mb-4">
+        <div class="card-header p-4" style="background-color: #8B6239; color: white;">
+          <h5 class="mb-0">Método de Pago</h5>
+        </div>
+        <div class="card-body p-5">
+          <form (ngSubmit)="onSubmitPago()">
+            <!-- Selección de método -->
+            <div class="mb-4">
+              <label class="form-label fw-bold">Elige tu método de pago:</label>
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="tarjeta"
+                  value="tarjeta"
+                  [(ngModel)]="metodoPago"
+                  name="metodoPago"
+                >
+                <label class="form-check-label" for="tarjeta">
+                  Tarjeta de Crédito/Débito
+                </label>
+              </div>
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="paypal"
+                  value="paypal"
+                  [(ngModel)]="metodoPago"
+                  name="metodoPago"
+                >
+                <label class="form-check-label" for="paypal">
+                  PayPal
+                </label>
+              </div><div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="transferencia"
+                value="transferencia"
+                [(ngModel)]="metodoPago"
+                name="metodoPago"
+              >
+              <label class="form-check-label" for="transferencia">
+                Transferencia Bancaria
+              </label>
+            </div>
+            </div>
+
+            <hr>
+
+            <!-- Tarjeta -->
+            <div *ngIf="metodoPago === 'tarjeta'" class="mt-4">
+              <div class="mb-4">
+                <label for="numeroTarjeta" class="form-label fw-bold">Número de Tarjeta</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="numeroTarjeta"
+                  [(ngModel)]="numeroTarjeta"
+                  name="numeroTarjeta"
+                  placeholder="1234 5678 9012 3456"
+                  maxlength="19"
+                  required
+                >
+              </div>
+
+              <div class="mb-4">
+                <label for="nombreTitular" class="form-label fw-bold">Nombre del Titular</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="nombreTitular"
+                  [(ngModel)]="nombreTitular"
+                  name="nombreTitular"
+                  placeholder="JUAN PEREZ"
+                  required
+                >
+              </div>
+
+              <div class="row mb-4">
+                <div class="col-md-8">
+                  <label for="fechaExpiracion" class="form-label fw-bold">Fecha de Expiración</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="fechaExpiracion"
+                    [(ngModel)]="fechaExpiracion"
+                    name="fechaExpiracion"
+                    placeholder="MM/YY"
+                    maxlength="5"
+                    required
+                  >
+                </div>
+                <div class="col-md-4">
+                  <label for="cvv" class="form-label fw-bold">CVV</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    id="cvv"
+                    [(ngModel)]="cvv"
+                    name="cvv"
+                    placeholder="123"
+                    maxlength="3"
+                    required
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- PayPal -->
+            <div *ngIf="metodoPago === 'paypal'" class="mt-4">
+              <div class="alert alert-info">
+                Serás redirigido a PayPal para completar el pago de forma segura.
+              </div><div class="mb-4">
+              <label for="emailPaypal" class="form-label fw-bold">Email de PayPal</label>
+              <input
+                type="email"
+                class="form-control form-control-lg"
+                id="emailPaypal"
+                [(ngModel)]="emailPaypal"
+                name="emailPaypal"
+                placeholder="tu@paypal.com"
+                required
+              >
+            </div></div>
+
+            <!-- Transferencia -->
+            <div *ngIf="metodoPago === 'transferencia'" class="mt-4">
+              <div class="alert alert-warning">
+                <strong>Datos de transferencia:</strong><br>
+                Banco: Banco Popular<br>
+                IBAN: ES91 0091 0000 0000 0000 0000<br>
+                SWIFT: BPOOESMM
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-5">
+              <button
+                type="button"
+                class="btn btn-lg btn-outline-secondary flex-grow-1"
+                (click)="volverAlCarrito()"
+              >
+                ← Volver
+              </button>
+              <button
+                type="submit"
+                class="btn btn-lg text-white fw-bold flex-grow-1"
+                style="background-color: #8B6239;"
+              >
+                Confirmar Pago
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paso 3: Confirmación -->
+  <div *ngIf="step === 3" class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-lg rounded-4 text-center">
+        <div class="card-body p-5">
+          <div class="mb-4">
+            <i class="bi bi-check-circle text-success" style="font-size: 4rem;"></i>
+          </div>
+          <h2 class="mb-3" style="color: #6B4423;">¡Pedido Confirmado!</h2>
+          <p class="fs-5 mb-4">Tu compra ha sido procesada exitosamente.</p>
+          <p class="text-muted mb-4">Recibirás un email de confirmación en breve.</p>
+          <a routerLink="/catalogo" class="btn btn-lg text-white fw-bold" style="background-color: #8B6239;">
+            Continuar Comprando
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

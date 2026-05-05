@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Café Colina",
+    "origin": "Colombia",
+    "process": "Natural",
+    "note": "Notas de chocolate y naranja",
+    "badge": "Orgánico",
+    "price": 9.50,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 2,
+    "name": "Blend Amanecer",
+    "origin": "Brasil",
+    "process": "Filtrado",
+    "note": "Equilibrado y dulce, ideal para filtrado",
+    "badge": "Premium",
+    "price": 8.90,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 3,
+    "name": "Espresso Tostado",
+    "origin": "Etiopía",
+    "process": "Tostado",
+    "note": "Cuerpo intenso y final persistente",
+    "badge": "Comercio Justo",
+    "price": 10.20,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 4,
+    "name": "Etiopía Floral",
+    "origin": "Etiopía",
+    "process": "Lavado",
+    "note": "Floral y Bergamota",
+    "badge": "Orgánico",
+    "price": 11.50,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 5,
+    "name": "Colombia Caramelo",
+    "origin": "Colombia",
+    "process": "Honey",
+    "note": "Caramelo y Nueces",
+    "badge": "Premium",
+    "price": 10.80,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 6,
+    "name": "Brasil Chocolate",
+    "origin": "Brasil",
+    "process": "Natural",
+    "note": "Chocolate y Avellana",
+    "badge": "Comercio Justo",
+    "price": 9.90,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 7,
+    "name": "Kenya Limón",
+    "origin": "Kenya",
+    "process": "Lavado",
+    "note": "Limón y Grosella",
+    "badge": "Orgánico",
+    "price": 12.30,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 8,
+    "name": "Colombia Naranja",
+    "origin": "Colombia",
+    "process": "Lavado",
+    "note": "Naranja y Miel",
+    "badge": "Premium",
+    "price": 10.50,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 9,
+    "name": "Kenya Tropical",
+    "origin": "Kenya",
+    "process": "Natural",
+    "note": "Tropical y Cítrico",
+    "badge": "Comercio Justo",
+    "price": 11.80,
+    "img": "img/productosFoto.png"
+  }
+]
