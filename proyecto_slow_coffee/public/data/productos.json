@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Café Etiopía Lote #1",
+    "origin": "Etiopía",
+    "process": "Lavado",
+    "note": "Frutos Rojos y Cítricos",
+    "badge": "Orgánico",
+    "price": 12.00,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 2,
+    "name": "Café Colombia Lote #2",
+    "origin": "Colombia",
+    "process": "Natural",
+    "note": "Naranja y Miel",
+    "badge": "Premium",
+    "price": 13.37,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 3,
+    "name": "Café Brasil Lote #3",
+    "origin": "Brasil",
+    "process": "Honey",
+    "note": "Caramel y Azúcar",
+    "badge": "Comercio Justo",
+    "price": 14.74,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 4,
+    "name": "Café Kenya Lote #4",
+    "origin": "Kenya",
+    "process": "Lavado",
+    "note": "Limón y Grosella",
+    "badge": "Orgánico",
+    "price": 16.11,
+    "img": "img/productosFoto.png"
+  },
+  {
+    "id": 5,
+    "name": "Café Etiopía Lote #5",
+    "origin": "Etiopía",
+    "process": "Natural",
+    "note": "Floral y Bergamota",
+    "badge": "Premium",
+    "price": 17.48,
+    "img": "img/productosFoto.png"
+  }
+]

@@ -16,4 +16,10 @@ export class ProductCardComponent {
   @Input() precio: string = '';
   @Input() textoBoton: string = '';
   @Input() urlBoton: string = '';
+  @Input() id: number = 0; // Añade esta línea donde están tus otros @Input
+
+
+  agregarAlCarrito() {
+    alert(`¡${this.titulo} se ha añadido al carrito desde el catálogo! ☕`);
+  }
 }

@@ -6,6 +6,8 @@ import {HistoriaComponent} from './componentes/historia/historia.component';
 import {SoporteComponent} from './componentes/soporte/soporte.component';
 import {ValoresComponent} from './componentes/valores/valores.component';
 import {PageNotFoundComponent} from './layout/page-not-found/page-not-found.component';
+// 1. IMPORTA AQUÍ TU COMPONENTE
+import { ProductoDetalleComponent } from './componentes/producto-detalle/producto-detalle.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +22,10 @@ export const routes: Routes = [
   {
     path: 'catalogo',
     component: CatalogoComponent
+  },
+  {
+    path: 'producto/:id',
+    component: ProductoDetalleComponent
   },
   {
     path: 'comunidad',
@@ -38,7 +44,7 @@ export const routes: Routes = [
     component: ValoresComponent
   },
   {
-    path: '**',
+    path: '**', // EL 404 SIEMPRE AL FINAL
     component: PageNotFoundComponent,
     pathMatch: "full"
   },

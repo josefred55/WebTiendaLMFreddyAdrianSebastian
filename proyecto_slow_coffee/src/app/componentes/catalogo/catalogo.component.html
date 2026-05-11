@@ -180,6 +180,7 @@
         @for (p of filteredProducts; track p.id) {
           <div class="col-md-6 col-lg-4">
             <app-product-card
+              [id]="p.id"
               [etiqueta]="p.origin + ' · ' + p.process"
               [titulo]="p.name"
               [descripcion]="p.note"
@@ -213,7 +214,6 @@
           </div>
         }
       </div>
-
     </div>
   </div>
 </div>

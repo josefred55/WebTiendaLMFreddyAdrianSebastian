@@ -39,4 +39,30 @@
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
 }
+/* Botón principal oscuro */
+.btn-dark-coffee {
+  background-color: #2c1b12 !important; /* Forzamos el color café oscuro */
+  color: #ffffff !important;
+  border: none;
+  padding: 0.6rem;
+  font-weight: 600;
+}
 
+.btn-dark-coffee:hover {
+  background-color: #4a3228 !important; /* Un café un poco más claro al pasar el ratón */
+  color: white !important;
+}
+
+/* Botón delineado */
+.btn-outline-details {
+  border: 2px solid #2c1b12 !important;
+  color: #2c1b12 !important;
+  background-color: transparent;
+  padding: 0.6rem;
+  font-weight: 600;
+}
+
+.btn-outline-details:hover {
+  background-color: #2c1b12 !important;
+  color: #ffffff !important;
+}

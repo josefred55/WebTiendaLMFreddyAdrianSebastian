@@ -1,19 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core'; // Añadimos inject
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {HeroComponent} from '../../layout/hero/hero.component';
-import {ProductCardComponent} from '../../layout/product-card/product-card.component';
-
-interface Product {
-  id: number;
-  name: string;
-  origin: string;
-  process: string;
-  note: string;
-  badge: string;
-  price: number;
-  img: string;
-}
+import { HeroComponent } from '../../layout/hero/hero.component';
+import { ProductCardComponent } from '../../layout/product-card/product-card.component';
+import { Product } from '../../interfaces/producto'; // Importamos la interfaz externa
+import { ProductService } from '../../servicios/product.service'; // Importamos el servicio
 
 @Component({
   selector: 'app-catalogo',
@@ -23,6 +14,8 @@ interface Product {
   styleUrl: './catalogo.component.css'
 })
 export class CatalogoComponent implements OnInit {
+  // --- Inyección del servicio ---
+  private productService = inject(ProductService);
 
   // --- Datos ---
   protected origins = ['Etiopía', 'Colombia', 'Brasil', 'Kenya'];
@@ -38,7 +31,6 @@ export class CatalogoComponent implements OnInit {
   // --- Estado ---
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  currentYear = new Date().getFullYear();
 
   // --- Filtros ---
   searchTerm = '';
@@ -47,26 +39,31 @@ export class CatalogoComponent implements OnInit {
   sortValue = '';
 
   ngOnInit() {
-    this.products = Array.from({ length: 7 }, (_, i) => {
-      const origin = this.origins[i % this.origins.length];
-      return {
-        id: i + 1,
-        name: `Café ${origin} Lote #${i + 1}`,
-        origin,
-        process: this.processes[i % this.processes.length],
-        note: this.noteMap[origin][i % 3],
-        badge: this.badgeTypes[i % this.badgeTypes.length],
-        price: parseFloat((12 + ((i * 1.37) % 15)).toFixed(2)),
-        img: 'img/productosFoto.png'
-      };
-    });
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        // Imprimimos en consola lo que llega para ver qué está pasando realmente
+        console.log('Datos recibidos del JSON:', data);
 
-    this.filteredProducts = [...this.products];
+        // Verificamos si la data existe y es un arreglo. Si es nula, usamos un arreglo vacío []
+        this.products = data || [];
+        this.filteredProducts = [...this.products];
+      },
+      error: (err) => {
+        console.error('Error al cargar productos:', err);
+        // Si hay error, inicializamos vacíos para no romper la vista
+        this.products = [];
+        this.filteredProducts = [];
+      }
+    });
   }
+
+  // ... (Tus métodos toggleFilter, isChecked y applyFilters se quedan igual)
+  // ... (Ya que funcionan con el arreglo de productos que ahora viene del JSON)
 
   toggleFilter(list: string[], value: string) {
     const idx = list.indexOf(value);
     idx === -1 ? list.push(value) : list.splice(idx, 1);
+    this.applyFilters(); // Te sugiero llamar a applyFilters aquí para que sea instantáneo
   }
 
   isChecked(list: string[], value: string): boolean {
