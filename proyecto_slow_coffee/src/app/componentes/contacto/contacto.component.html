@@ -1,0 +1,101 @@
+<!-- contacto.component.html -->
+<div class="container py-5 my-5">
+  <h2 class="text-center mb-5 display-5 fw-bold" style="color: #6B4423;">Ponte en Contacto</h2>
+
+  <div class="row g-5">
+    <div class="col-lg-6">
+      <img src="./img/taza_mesa_fondo_borroso_hd.jpg" alt="Contacto" class="img-fluid rounded-4 shadow-lg">
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body p-5">
+          <form (ngSubmit)="onSubmit()" *ngIf="!enviado">
+            <div class="mb-4">
+              <label for="nombre" class="form-label fw-bold">Nombre</label>
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                id="nombre"
+                [(ngModel)]="nombre"
+                name="nombre"
+                placeholder="Tu nombre"
+                required
+              >
+            </div>
+
+            <div class="mb-4">
+              <label for="email" class="form-label fw-bold">Email</label>
+              <input
+                type="email"
+                class="form-control form-control-lg"
+                id="email"
+                [(ngModel)]="email"
+                name="email"
+                placeholder="tu@email.com"
+                required
+              >
+            </div>
+
+            <div class="mb-4">
+              <label for="telefono" class="form-label fw-bold">Teléfono (opcional)</label>
+              <input
+                type="tel"
+                class="form-control form-control-lg"
+                id="telefono"
+                [(ngModel)]="telefono"
+                name="telefono"
+                placeholder="+34 600 000 000"
+              >
+            </div>
+
+            <div class="mb-4">
+              <label for="asunto" class="form-label fw-bold">Asunto</label>
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                id="asunto"
+                [(ngModel)]="asunto"
+                name="asunto"
+                placeholder="Consulta sobre..."
+              >
+            </div>
+
+            <div class="mb-4">
+              <label for="mensaje" class="form-label fw-bold">Mensaje</label>
+              <textarea
+                class="form-control form-control-lg"
+                id="mensaje"
+                [(ngModel)]="mensaje"
+                name="mensaje"
+                rows="6"
+                placeholder="Cuéntanos tu consulta..."
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-lg w-100 text-white fw-bold"
+              style="background-color: #8B6239;"
+            >
+              Enviar Mensaje
+            </button>
+          </form>
+
+          <div *ngIf="enviado" class="alert alert-success text-center" role="alert">
+            <h4>¡Mensaje Enviado!</h4>
+            <p class="mb-0">Nos pondremos en contacto pronto. Gracias por escribir.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 text-center">
+        <h5 class="fw-bold mb-3" style="color: #6B4423;">Información de Contacto</h5>
+        <p><strong>Email:</strong> <a href="mailto:info&#64;slowcoffee.com">info&#64;slowcoffee.com</a></p>
+        <p><strong>Teléfono:</strong> +34 600 123 456</p>
+        <p><strong>Dirección:</strong> Calle del Café, 42 · 28001 Madrid</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,7 +33,6 @@
   width: 100%;
 }
 
-.hero-badge,
 .btn-hero {
   font-size: 1.1rem;
   padding: 1rem 1.5rem;
@@ -44,7 +43,6 @@
   font-weight: 600;
 }
 
-.hero-badge:hover,
 .btn-hero:hover {
   background-color: var(--terracotta) !important;
   color: white !important;

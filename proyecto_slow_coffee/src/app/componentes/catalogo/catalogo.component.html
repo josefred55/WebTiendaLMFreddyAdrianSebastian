@@ -1,54 +1,18 @@
-<app-hero
-  titulo="Nuestra colección"
-  subtitulo="30 variedades seleccionadas con cuidado, cada una con su historia y su sabor único."
-  imgUrl="img/tazas_cafe_mesa.jpg"
-  textoBoton="Conocer Más"
-  botonUrl="/catalogo"
->
-</app-hero>
-
-<!-- TRUST BAR -->
-<div class="bg-light py-4">
+<section class="py-2 mt-5" id="historia">
   <div class="container">
-    <div class="d-flex justify-content-center align-items-center flex-wrap gap-4 gap-md-5">
-
-      <div class="d-flex align-items-center gap-3">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-terracotta" stroke="currentColor" stroke-width="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-        </svg>
-        <span class="trust-label fw-semibold">Comercio Justo<em class="fw-light d-block">Certificado</em></span>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <span class="headline d-block mb-2 fs-5">Catálogo</span>
+        <h2 class="display-3 fw-bold mb-4">Nuestra Colección</h2>
+        <p class="lead fs-4 lh-lg">9 variedades seleccionadas con cuidado, cada una con su historia y sabor único.</p>
       </div>
-
-      <div class="vr opacity-25 d-none d-md-block"></div>
-
-      <div class="d-flex align-items-center gap-3">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-terracotta" stroke="currentColor" stroke-width="2">
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-          <circle cx="12" cy="10" r="3"></circle>
-        </svg>
-        <span class="trust-label fw-semibold">Origen<em class="fw-light d-block">Trazable</em></span>
-      </div>
-
-      <div class="vr opacity-25 d-none d-md-block"></div>
-
-      <div class="d-flex align-items-center gap-3">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-terracotta" stroke="currentColor" stroke-width="2">
-          <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
-          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-          <circle cx="5.5" cy="18.5" r="2.5"></circle>
-          <circle cx="18.5" cy="18.5" r="2.5"></circle>
-        </svg>
-        <span class="trust-label fw-semibold">Envío<em class="fw-light d-block">En 48h</em></span>
-      </div>
-
     </div>
   </div>
-</div>
+</section>
 
 <!-- GRID + FILTROS -->
-<div class="container py-4 my-5" id="catalogo">
+<div class="container py-4 my-3" id="catalogo">
   <div class="row">
-
     <!-- SIDEBAR FILTROS -->
     <aside class="col-lg-3 my-4">
       <div class="bg-white rounded-3 p-4 shadow-sm sidebar-sticky">
@@ -185,35 +149,74 @@
               [titulo]="p.name"
               [descripcion]="p.note"
               [precio]="p.price + ' €'"
+              imgUrl="./img/cafe{{p.id}}.jpg"
               textoBoton="Añadir al carrito"
               urlBoton="/catalogo"
             >
               @if (p.badge === 'Premium') {
                 <span class="badge-premium">
-            <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span class="text-light fw-semibold">Premium</span>
-          </span>
+                  <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-light fw-semibold">Premium</span>
+                </span>
               } @else if (p.badge === 'Comercio Justo') {
                 <span class="badge-justo">
-            <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span class="text-light fw-semibold">Comercio Justo</span>
-          </span>
+                  <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-light fw-semibold">Comercio Justo</span>
+                </span>
               } @else {
                 <span class="badge-organico">
-            <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            <span class="text-light fw-semibold">Orgánico</span>
-          </span>
+                  <svg class="text-light" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                  <span class="text-light fw-semibold">Orgánico</span>
+                </span>
               }
             </app-product-card>
           </div>
         }
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="bg-light py-4">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center flex-wrap gap-4 gap-md-5">
+
+      <div class="d-flex align-items-center gap-3">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-terracotta" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+        <span class="trust-label fw-semibold">Comercio Justo<em class="fw-light d-block">Certificado</em></span>
+      </div>
+
+      <div class="vr opacity-25 d-none d-md-block"></div>
+
+      <div class="d-flex align-items-center gap-3">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-terracotta" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+        <span class="trust-label fw-semibold">Origen<em class="fw-light d-block">Trazable</em></span>
+      </div>
+
+      <div class="vr opacity-25 d-none d-md-block"></div>
+
+      <div class="d-flex align-items-center gap-3">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-terracotta" stroke="currentColor" stroke-width="2">
+          <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+        <span class="trust-label fw-semibold">Envío<em class="fw-light d-block">En 48h</em></span>
+      </div>
+
     </div>
   </div>
 </div>

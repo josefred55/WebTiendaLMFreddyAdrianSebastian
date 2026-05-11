@@ -45,3 +45,17 @@
   color: white;
   text-decoration: none;
 }
+
+.btn-outline-dark {
+  color: var(--cream) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-dark:hover {
+  background: var(--cream) !important;
+  color: var(--coffee-900) !important;
+  border-color: var(--cream) !important;
+}
