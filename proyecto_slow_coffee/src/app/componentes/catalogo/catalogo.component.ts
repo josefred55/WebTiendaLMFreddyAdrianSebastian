@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core'; // Añadimos inject
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeroComponent } from '../../layout/hero/hero.component';
-import { ProductCardComponent } from '../../layout/product-card/product-card.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
 import { Product } from '../../interfaces/producto'; // Importamos la interfaz externa
 import { ProductService } from '../../servicios/product.service'; // Importamos el servicio
 
